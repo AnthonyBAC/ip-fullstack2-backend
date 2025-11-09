@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "PRODUCTO")
@@ -17,6 +18,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Producto {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "producto_seq")
+    @SequenceGenerator(
+        name = "producto_seq",
+        sequenceName = "PRODUCTO_SEQ", 
+        allocationSize = 1
+    )
     @Column(name = "PRODUCTO_ID")
     private Long id;
     
